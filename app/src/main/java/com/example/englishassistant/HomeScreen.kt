@@ -6,16 +6,10 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonColors
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
 
 @Composable
 fun HomeScreen(context: Context) {
@@ -26,53 +20,16 @@ fun HomeScreen(context: Context) {
         verticalArrangement = Arrangement.SpaceEvenly,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {
-        Button(
-            onClick = { Toast.makeText(context, "Запись начата!", Toast.LENGTH_SHORT) },
-            modifier = Modifier
-                .fillMaxWidth(0.8f)
-                .height(50.dp),
-            colors = ButtonColors(
-                Color(128, 89, 57),
-                Color(0, 0, 0),
-                Color(128, 89, 57),
-                Color(0, 0, 0)
-            )
-        ) {
-            Text(text = "recording")
-        }
-        Button(
-            onClick = { Toast.makeText(context, "Поиск начат!", Toast.LENGTH_SHORT) },
-            modifier = Modifier
-                .fillMaxWidth(0.8f)
-                .height(50.dp),
-            colors = ButtonColors(
-                Color(128, 89, 57),
-                Color(0, 0, 0),
-                Color(128, 89, 57),
-                Color(0, 0, 0)
-            )
-        ) {
-            Text(text = "search")
-        }
-        Button(
-            onClick = {
-                Toast.makeText(
-                    context,
-                    "Тестирование начато!",
-                    Toast.LENGTH_SHORT
-                )
-            },
-            modifier = Modifier
-                .fillMaxWidth(0.8f)
-                .height(50.dp),
-            colors = ButtonColors(
-                Color(128, 89, 57),
-                Color(0, 0, 0),
-                Color(128, 89, 57),
-                Color(0, 0, 0)
-            )
-        ) {
-            Text(text = "test")
-        }
+        HomeScreenButton(
+            { Toast.makeText(context, "Запись начата!", Toast.LENGTH_SHORT).show() },
+            "recording"
+        )
+        HomeScreenButton(
+            { Toast.makeText(context, "Поиск начат!", Toast.LENGTH_SHORT).show() },
+            "search"
+        )
+        HomeScreenButton({
+            Toast.makeText(context, "Тестирование начато!", Toast.LENGTH_SHORT).show()
+        }, "test")
     }
 }
