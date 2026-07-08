@@ -1,6 +1,5 @@
-package com.example.englishassistant
+package com.example.englishassistant.presentation
 
-import android.widget.Toast
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Button
@@ -9,7 +8,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.unit.dp
+import com.example.englishassistant.R
 
 @Composable
 fun HomeScreenButton(action:()-> Unit, text: String){
@@ -19,8 +20,8 @@ fun HomeScreenButton(action:()-> Unit, text: String){
             .fillMaxWidth(0.8f)
             .height(50.dp),
         colors = ButtonColors(
-            Color(128, 89, 57),
-            Color(0, 0, 0),
+            colorResource(R.color.homeScreenButtonColor),
+            Color.Black,
             Color(128, 89, 57),
             Color(0, 0, 0)
         )

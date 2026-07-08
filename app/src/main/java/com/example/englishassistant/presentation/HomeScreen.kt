@@ -1,4 +1,4 @@
-package com.example.englishassistant
+package com.example.englishassistant.presentation
 
 import android.content.Context
 import android.widget.Toast
