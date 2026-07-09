@@ -1,4 +1,4 @@
-package com.example.englishassistant
+package com.example.englishassistant.presentation
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -14,7 +14,6 @@ class MainActivity : ComponentActivity() {
         setContent {
             val context = LocalContext.current
             HomeScreen(context)
-            Text("gdsrg")
         }
     }
 }
