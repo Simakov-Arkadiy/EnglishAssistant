@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Card
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -18,24 +19,28 @@ fun HomeScreen(context: Context) {
         modifier = Modifier
             .fillMaxSize()
     ){
-        Column(
-            modifier = Modifier
-                .fillMaxSize()
-                .padding(16.dp),
-            verticalArrangement = Arrangement.SpaceEvenly,
-            horizontalAlignment = Alignment.CenterHorizontally
-        ) {
-            HomeScreenButton(
-                { Toast.makeText(context, "Запись начата!", Toast.LENGTH_SHORT).show() },
-                "recording"
-            )
-            HomeScreenButton(
-                { Toast.makeText(context, "Поиск начат!", Toast.LENGTH_SHORT).show() },
-                "search"
-            )
-            HomeScreenButton({
-                Toast.makeText(context, "Тестирование начато!", Toast.LENGTH_SHORT).show()
-            }, "test")
+        Card(
+            modifier = Modifier.padding(20.dp,100.dp)
+        ){
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp),
+                verticalArrangement = Arrangement.SpaceEvenly,
+                horizontalAlignment = Alignment.CenterHorizontally
+            ) {
+                HomeScreenButton(
+                    { Toast.makeText(context, "Запись начата!", Toast.LENGTH_SHORT).show() },
+                    "recording"
+                )
+                HomeScreenButton(
+                    { Toast.makeText(context, "Поиск начат!", Toast.LENGTH_SHORT).show() },
+                    "search"
+                )
+                HomeScreenButton({
+                    Toast.makeText(context, "Тестирование начато!", Toast.LENGTH_SHORT).show()
+                }, "test")
+            }
         }
     }
 }
