@@ -19,12 +19,6 @@ fun HomeScreenButton(action:()-> Unit, text: String){
         modifier = Modifier
             .fillMaxWidth(0.8f)
             .height(50.dp),
-        colors = ButtonColors(
-            colorResource(R.color.homeScreenButtonColor),
-            Color.Black,
-            Color(128, 89, 57),
-            Color(0, 0, 0)
-        )
     ) {
         Text(text = text)
     }

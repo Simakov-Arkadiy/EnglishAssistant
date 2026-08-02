@@ -9,6 +9,7 @@ import androidx.room.RoomDatabase
 internal abstract class EnglishAssistantDataBase : RoomDatabase() {
 
     abstract fun baseDao(): BaseDao
+
     companion object {
         private var INSTANCE: EnglishAssistantDataBase? = null
         fun getInstance(context: Context): EnglishAssistantDataBase {

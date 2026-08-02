@@ -1,8 +1,13 @@
 package com.example.englishassistant.data
 
-import com.example.englishassistant.domain.WordPairInterface
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+import com.example.englishassistant.domain.WordPair
 
+@Entity(tableName = "wordPairs")
 internal data class EntityWordPair(
+    @PrimaryKey(autoGenerate = true)
+    val id: Int = 0,
     override val wordRu: String,
-    override val wordEn: String
-) : WordPairInterface
+    override val wordEn: String,
+) : WordPair
