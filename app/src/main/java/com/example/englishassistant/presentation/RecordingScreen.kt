@@ -40,17 +40,19 @@ fun RecordingScreen() {
                 var valueForRuTextField by remember {
                     mutableStateOf(TextFieldValue(text = ""))
                 }
-                TextField(value = valueForRuTextField,
+                TextField(
+                    value = valueForRuTextField,
                     onValueChange = { newValue: TextFieldValue -> valueForRuTextField = newValue },
-                    label = {Text("Слово на русском")})
+                    label = { Text("Слово на русском") })
                 var valueForEnTextField by remember {
                     mutableStateOf(TextFieldValue(text = ""))
                 }
-                TextField(value = valueForEnTextField ,
-                    onValueChange = { newValue: TextFieldValue -> valueForEnTextField  = newValue },
-                    label = {Text("Слово на английском")})
+                TextField(
+                    value = valueForEnTextField,
+                    onValueChange = { newValue: TextFieldValue -> valueForEnTextField = newValue },
+                    label = { Text("Слово на английском") })
                 Button(
-                    onClick = {} ,
+                    onClick = {},
                     modifier = Modifier
                         .fillMaxWidth(0.8f)
                         .height(50.dp),

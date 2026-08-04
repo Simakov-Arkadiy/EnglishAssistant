@@ -1,9 +1,7 @@
 plugins {
     alias(libs.plugins.android.application)
-    //alias(libs.plugins.kotlin.android)
-    //id("org.jetbrains.kotlin.android")
     alias(libs.plugins.kotlin.compose)
-    id("com.google.devtools.ksp")
+    alias(libs.plugins.ksp)
 
 }
 
@@ -61,7 +59,8 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
     //room
-    implementation("androidx.room:room-runtime:2.8.4")
-    ksp("androidx.room:room-compiler:2.8.4")
-    implementation("androidx.room:room-ktx:2.8.4")
+    implementation(libs.androidx.room.runtime)
+    ksp(libs.room.compiler)
+    implementation(libs.androidx.room.ktx)
+    implementation(libs.androidx.navigation.compose)
 }

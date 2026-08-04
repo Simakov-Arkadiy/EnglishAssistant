@@ -4,8 +4,10 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.material3.Text
 import androidx.compose.ui.platform.LocalContext
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.englishassistant.ui.theme.AppTheme
 
 class MainActivity : ComponentActivity() {
@@ -13,10 +15,13 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            AppTheme{
+            AppTheme {
+                val navController = rememberNavController()
                 val context = LocalContext.current
-                //HomeScreen(context)
-                RecordingScreen()
+                NavHost(navController = navController, startDestination = "HomeScreen") {
+                    composable("homeScreen") { HomeScreen(context, navController) }
+                    composable("recordingScreen") { RecordingScreen() }
+                }
             }
         }
     }
