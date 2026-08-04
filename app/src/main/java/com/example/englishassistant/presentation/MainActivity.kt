@@ -15,7 +15,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             AppTheme{
                 val context = LocalContext.current
-                HomeScreen(context)
+                //HomeScreen(context)
+                RecordingScreen()
             }
         }
     }
