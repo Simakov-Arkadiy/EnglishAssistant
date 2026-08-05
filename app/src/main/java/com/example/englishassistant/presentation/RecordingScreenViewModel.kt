@@ -25,7 +25,7 @@ internal class RecordingScreenViewModel(val useCase: RecordingWordPairUseCase) :
 
     fun recording() {
         viewModelScope.launch {
-            useCase.invoke(
+            useCase(
                 WordPairImpl(
                     valueForRuTextField.value.text,
                     valueForEnTextField.value.text
