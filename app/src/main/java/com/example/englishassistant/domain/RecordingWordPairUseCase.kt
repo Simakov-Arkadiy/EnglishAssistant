@@ -1,6 +1,6 @@
 package com.example.englishassistant.domain
 
-internal class WritingWordPairUseCase(
+internal class RecordingWordPairUseCase(
     val repository: Repository
 ) {
     suspend fun invoke(wordPair: WordPair) {

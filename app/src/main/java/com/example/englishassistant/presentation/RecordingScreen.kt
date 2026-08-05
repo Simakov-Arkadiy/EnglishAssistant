@@ -20,9 +20,10 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
-fun RecordingScreen() {
+fun RecordingScreen(viewModel: RecordingScreenViewModel = viewModel()) {
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -37,22 +38,17 @@ fun RecordingScreen() {
                 verticalArrangement = Arrangement.SpaceEvenly,
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
-                var valueForRuTextField by remember {
-                    mutableStateOf(TextFieldValue(text = ""))
-                }
                 TextField(
-                    value = valueForRuTextField,
-                    onValueChange = { newValue: TextFieldValue -> valueForRuTextField = newValue },
+                    value = viewModel.valueForRuTextField.value,
+                    onValueChange = viewModel::updateValueForRuTextField,
                     label = { Text("Слово на русском") })
-                var valueForEnTextField by remember {
-                    mutableStateOf(TextFieldValue(text = ""))
-                }
+
                 TextField(
-                    value = valueForEnTextField,
-                    onValueChange = { newValue: TextFieldValue -> valueForEnTextField = newValue },
+                    value = viewModel.valueForEnTextField.value,
+                    onValueChange = viewModel::updateValueForEnTextField,
                     label = { Text("Слово на английском") })
                 Button(
-                    onClick = {},
+                    onClick = viewModel::recording,
                     modifier = Modifier
                         .fillMaxWidth(0.8f)
                         .height(50.dp),
