@@ -5,11 +5,12 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.lifecycle.ViewModel
 import androidx.compose.runtime.State
 import androidx.lifecycle.viewModelScope
-import com.example.englishassistant.domain.RecordingWordPairUseCase
+import com.example.englishassistant.domain.RecordWordPairUseCase
 import com.example.englishassistant.domain.WordPairImpl
 import kotlinx.coroutines.launch
+import javax.inject.Inject
 
-internal class RecordingScreenViewModel(val useCase: RecordingWordPairUseCase) : ViewModel() {
+internal class RecordScreenViewModel @Inject constructor(val useCase: RecordWordPairUseCase) : ViewModel() {
     private val _valueForRuTextField = mutableStateOf(TextFieldValue(text = ""))
     val valueForRuTextField: State<TextFieldValue> = _valueForRuTextField
     private val _valueForEnTextField = mutableStateOf(TextFieldValue(text = ""))
@@ -25,7 +26,7 @@ internal class RecordingScreenViewModel(val useCase: RecordingWordPairUseCase) :
 
     fun recording() {
         viewModelScope.launch {
-            useCase(
+            useCase.invoke(
                 WordPairImpl(
                     valueForRuTextField.value.text,
                     valueForEnTextField.value.text

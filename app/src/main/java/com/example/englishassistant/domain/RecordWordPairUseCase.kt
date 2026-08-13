@@ -1,9 +1,11 @@
 package com.example.englishassistant.domain
 
-internal class RecordingWordPairUseCase(
+import javax.inject.Inject
+
+internal class RecordWordPairUseCase @Inject constructor(
     val repository: Repository
 ) {
     suspend operator fun invoke(wordPair: WordPair) {
-        repository.writingWordPair(wordPair)
+        repository.recordWordPair(wordPair)
     }
 }

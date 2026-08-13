@@ -20,7 +20,7 @@ class MainActivity : ComponentActivity() {
                 val context = LocalContext.current
                 NavHost(navController = navController, startDestination = "HomeScreen") {
                     composable("homeScreen") { HomeScreen(context, navController) }
-                    composable("recordingScreen") { RecordingScreen() }
+                    composable("recordingScreen") { RecordScreen() }
                 }
             }
         }
