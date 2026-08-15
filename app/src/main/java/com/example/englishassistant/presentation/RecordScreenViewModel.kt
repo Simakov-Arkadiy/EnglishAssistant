@@ -35,6 +35,8 @@ internal class RecordScreenViewModel @Inject constructor(val useCase: RecordWord
                 )
             )
         }
+        _valueForRuTextField.value = TextFieldValue(text = "")
+        _valueForEnTextField.value = TextFieldValue(text = "")
     }
 }
 
