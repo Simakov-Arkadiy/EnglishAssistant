@@ -14,9 +14,9 @@ internal class RepositoryImpl @Inject constructor(val database: EnglishAssistant
         }
     }
 
-    override suspend fun searchWordPair(wordPair: WordPair): Result<List<WordPair>> {
+    override suspend fun searchWordPair(word: String): Result<WordPair> {
        return runCatching {
-           database.baseDao().getWordPairs(wordRu = wordPair.wordRu, wordEn = wordPair.wordEn)
+           database.baseDao().getWordPairs(word = word)
        }
     }
 }

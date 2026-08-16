@@ -9,6 +9,6 @@ internal interface BaseDao {
     @Insert
     suspend fun insert(wordPair: EntityWordPair)
 
-    @Query("SELECT * FROM wordPairs WHERE wordEn = :wordRu OR wordRu = :wordRu")
-    suspend fun getWordPairs(wordRu:String, wordEn:String): List<EntityWordPair>
+    @Query("SELECT * FROM wordPairs WHERE wordEn = :word OR wordRu = :word")
+    suspend fun getWordPairs(word:String): EntityWordPair
 }

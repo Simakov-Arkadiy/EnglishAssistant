@@ -26,7 +26,7 @@ internal class RecordScreenViewModel @Inject constructor(val useCase: RecordWord
         _valueForEnTextField.value = newValue
     }
 
-    fun recording() {
+    fun record() {
         viewModelScope.launch {
             useCase.invoke(
                 WordPairImpl(
