@@ -6,6 +6,6 @@ internal class SearchWordPairUseCase @Inject constructor(
     val repository: Repository
 ) {
     suspend operator fun invoke(word:String): Result<WordPair> {
-        return repository.searchWordPair(word)
+        return repository.getWordPairUnWeighted(word)
     }
 }

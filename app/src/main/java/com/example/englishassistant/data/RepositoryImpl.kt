@@ -14,9 +14,15 @@ internal class RepositoryImpl @Inject constructor(val database: EnglishAssistant
         }
     }
 
-    override suspend fun searchWordPair(word: String): Result<WordPair> {
+    override suspend fun getWordPairUnWeighted(word: String): Result<WordPair> {
        return runCatching {
-           database.baseDao().getWordPairs(word = word)
+           database.baseDao().getWordPairUnWeighted(word = word)
        }
+    }
+
+    override suspend fun getWordPairsWeighted(): Result<List<WordPair>> {
+        return runCatching {
+            database.baseDao().getWordPairsWeighted()
+        }
     }
 }

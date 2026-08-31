@@ -10,7 +10,6 @@ import androidx.lifecycle.viewModelScope
 import com.example.englishassistant.domain.SearchWordPairUseCase
 import com.example.englishassistant.domain.WordPair
 import com.example.englishassistant.domain.WordPairImpl
-import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
