@@ -10,4 +10,5 @@ internal data class EntityWordPair(
     val id: Int = 0,
     override val wordRu: String,
     override val wordEn: String,
+    val weight: Int = 0,
 ) : WordPair

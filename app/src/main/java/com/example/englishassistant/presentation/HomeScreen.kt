@@ -35,7 +35,7 @@ fun HomeScreen(context: Context, navController: NavController) {
                     "recording"
                 )
                 HomeScreenButton(
-                    { Toast.makeText(context, "Поиск начат!", Toast.LENGTH_SHORT).show() },
+                    { navController.navigate("searchScreen") },
                     "search"
                 )
                 HomeScreenButton({
