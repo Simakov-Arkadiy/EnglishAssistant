@@ -22,7 +22,9 @@ internal class RepositoryImpl @Inject constructor(val database: EnglishAssistant
 
     override suspend fun getWordPairsWeighted(): Result<List<WordPair>> {
         return runCatching {
-            database.baseDao().getWordPairsWeighted()
+            val wordPairs = database.baseDao().getWordPairsWeighted()
+            database.baseDao().updateWeights(wordPairs)
+            wordPairs
         }
     }
 }
