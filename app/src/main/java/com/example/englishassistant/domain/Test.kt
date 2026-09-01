@@ -11,8 +11,8 @@ data class Test private constructor(
             for (pair in pairs) {
                 answerOptions.add(pair.wordRu)
             }
-            val correctAnswerOption: String = ""
-            val checkWord: String = ""
+            val correctAnswerOption: String = pairs[0].wordRu
+            val checkWord: String = pairs[0].wordEn
             answerOptions.shuffled()
             return Test(
                 answerOptions = answerOptions,
