@@ -1,4 +1,4 @@
-package com.example.englishassistant.presentation
+package com.example.englishassistant.presentation.searchScreen
 
 import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.State

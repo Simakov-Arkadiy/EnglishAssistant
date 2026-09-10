@@ -1,4 +1,4 @@
-package com.example.englishassistant.presentation
+package com.example.englishassistant.presentation.searchScreen
 
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Text

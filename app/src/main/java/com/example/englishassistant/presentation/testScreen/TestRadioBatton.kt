@@ -1,4 +1,4 @@
-package com.example.englishassistant.presentation
+package com.example.englishassistant.presentation.testScreen
 
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.padding

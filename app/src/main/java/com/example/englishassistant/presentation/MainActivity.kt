@@ -10,6 +10,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.englishassistant.presentation.di.App
+import com.example.englishassistant.presentation.recordScreen.RecordScreen
+import com.example.englishassistant.presentation.searchScreen.SearchScreen
+import com.example.englishassistant.presentation.testScreen.TestScreen
 import com.example.englishassistant.ui.theme.AppTheme
 
 class MainActivity : ComponentActivity() {

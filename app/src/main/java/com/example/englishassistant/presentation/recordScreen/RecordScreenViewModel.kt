@@ -1,4 +1,4 @@
-package com.example.englishassistant.presentation
+package com.example.englishassistant.presentation.recordScreen
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.ui.text.input.TextFieldValue

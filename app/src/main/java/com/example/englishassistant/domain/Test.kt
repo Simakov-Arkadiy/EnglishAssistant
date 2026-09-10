@@ -1,5 +1,7 @@
 package com.example.englishassistant.domain
 
+import kotlin.random.Random
+
 data class Test private constructor(
     val answerOptions: List<String>,
     val correctAnswerOption: String,
@@ -11,11 +13,11 @@ data class Test private constructor(
             for (pair in pairs) {
                 answerOptions.add(pair.wordRu)
             }
-            val correctAnswerOption: String = pairs[0].wordRu
-            val checkWord: String = pairs[0].wordEn
-            answerOptions.shuffled()
+            val random = Random.nextInt(4)
+            val correctAnswerOption: String = pairs[random].wordRu
+            val checkWord: String = pairs[random].wordEn
             return Test(
-                answerOptions = answerOptions,
+                answerOptions = answerOptions.shuffled(),
                 correctAnswerOption = correctAnswerOption,
                 checkWord = checkWord
             )

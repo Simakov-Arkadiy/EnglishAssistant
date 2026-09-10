@@ -1,8 +1,8 @@
 package com.example.englishassistant.presentation.di
 
-import com.example.englishassistant.presentation.RecordScreenViewModelFactory
-import com.example.englishassistant.presentation.SearchScreenViewModelFactory
-import com.example.englishassistant.presentation.TestScreenViewModelFactory
+import com.example.englishassistant.presentation.recordScreen.RecordScreenViewModelFactory
+import com.example.englishassistant.presentation.searchScreen.SearchScreenViewModelFactory
+import com.example.englishassistant.presentation.testScreen.TestScreenViewModelFactory
 import dagger.Component
 import javax.inject.Singleton
 
