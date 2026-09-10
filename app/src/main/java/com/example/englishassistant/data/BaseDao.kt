@@ -16,5 +16,5 @@ internal interface BaseDao {
     suspend fun getWordPairsWeighted(): List<EntityWordPair>
 
     @Query("UPDATE wordPairs SET weight = weight + 1 WHERE id IN (:pairs)")
-    suspend fun updateWeights(pairs:List<EntityWordPair>)
+    suspend fun updateWeights(pairs:List<Int>)
 }

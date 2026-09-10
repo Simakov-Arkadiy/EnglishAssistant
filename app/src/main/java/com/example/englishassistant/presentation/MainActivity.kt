@@ -23,6 +23,8 @@ class MainActivity : ComponentActivity() {
             .recordScreenViewModelFactory()
         val factoryForSearchScreen = app.appComponent
             .searchScreenViewModelFactory()
+        val factoryForTestScreen = app.appComponent
+            .testScreenViewModelFactory()
 
         setContent {
             AppTheme {
@@ -31,7 +33,8 @@ class MainActivity : ComponentActivity() {
                 NavHost(navController = navController, startDestination = "HomeScreen") {
                     composable("homeScreen") { HomeScreen(context, navController) }
                     composable("recordingScreen") { RecordScreen(viewModel(factory = factoryForRecordScreen)) }
-                    composable("searchScreen") { SearchScreen(viewModel(factory =  factoryForSearchScreen)) }
+                    composable("searchScreen") { SearchScreen(viewModel(factory = factoryForSearchScreen)) }
+                    composable("testScreen") { TestScreen(viewModel(factory = factoryForTestScreen)) }
                 }
             }
         }

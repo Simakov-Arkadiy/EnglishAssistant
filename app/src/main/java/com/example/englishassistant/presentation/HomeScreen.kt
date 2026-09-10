@@ -15,7 +15,10 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 
 @Composable
-fun HomeScreen(context: Context, navController: NavController) {
+internal fun HomeScreen(
+    context: Context,
+    navController: NavController,
+) {
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -38,9 +41,12 @@ fun HomeScreen(context: Context, navController: NavController) {
                     { navController.navigate("searchScreen") },
                     "search"
                 )
-                HomeScreenButton({
-                    Toast.makeText(context, "Тестирование начато!", Toast.LENGTH_SHORT).show()
-                }, "test")
+                HomeScreenButton(
+                    {
+                        navController.navigate("testScreen")
+                    },
+                    "test"
+                )
             }
         }
     }

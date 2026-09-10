@@ -9,14 +9,19 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
-internal fun TestRadioButton(isSelected: Boolean, answerOption:String,action:()->Unit){
-    Row(){
+internal fun TestRadioButton(
+    isSelected: Boolean = false,
+    answerOption: String,
+    action: (Int) -> Unit,
+    numberRadioButton: Int,
+) {
+    Row() {
         RadioButton(
             selected = isSelected,
-            onClick =  action,
+            onClick = { action(numberRadioButton) },
         )
         Text(
-            text =  answerOption,
+            text = answerOption,
             modifier = Modifier.padding(start = 16.dp)
         )
     }
