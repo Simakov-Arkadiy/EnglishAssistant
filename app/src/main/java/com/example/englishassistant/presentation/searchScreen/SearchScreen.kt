@@ -39,12 +39,12 @@ internal fun SearchScreen(viewModel: SearchScreenViewModel) {
             ) {
                 TextField(
                     value = viewModel.valueForTextField.value,
-                    onValueChange = viewModel::updateValueForTextField,
+                    onValueChange = viewModel::symbolChangedInTextField,
                     label = { Text("Искомое слово") })
 
                 Button(
                     onClick = {
-                        viewModel.search()
+                        viewModel.clickButtonSearch()
                         isSearching.value = true
                     },
                     modifier = Modifier
@@ -62,7 +62,7 @@ internal fun SearchScreen(viewModel: SearchScreenViewModel) {
                 openDialog.value = true
                 AlertDialogForSearchScreen(callBack = {
                     openDialog.value = false
-                    viewModel.cleanValueForAlertDialog()
+                    viewModel.clickButtonOk()
                 }, wordPair = viewModel.valueForAlertDialog.value)
             }
         }

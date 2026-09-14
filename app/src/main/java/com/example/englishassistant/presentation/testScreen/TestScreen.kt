@@ -43,31 +43,16 @@ internal fun TestScreen(viewModel: TestScreenViewModel) {
                     Text("Как переводится слово ${viewModel.test.value.checkWord}?")
                     Column(
                         verticalArrangement = Arrangement.SpaceEvenly,
-                        horizontalAlignment = Alignment.Start){
-                        TestRadioButton(
-                            viewModel.isSelected[0],
-                            viewModel.test.value.answerOptions[0],
-                            viewModel::activateRadioButton,
-                            0
-                        )
-                        TestRadioButton(
-                            viewModel.isSelected[1],
-                            viewModel.test.value.answerOptions[1],
-                            viewModel::activateRadioButton,
-                            1
-                        )
-                        TestRadioButton(
-                            viewModel.isSelected[2],
-                            viewModel.test.value.answerOptions[2],
-                            viewModel::activateRadioButton,
-                            2
-                        )
-                        TestRadioButton(
-                            viewModel.isSelected[3],
-                            viewModel.test.value.answerOptions[3],
-                            viewModel::activateRadioButton,
-                            3
-                        )
+                        horizontalAlignment = Alignment.Start
+                    ) {
+                        for (i in 0..3) {
+                            TestRadioButton(
+                                viewModel.isSelected[i],
+                                viewModel.test.value.answerOptions[i],
+                                viewModel::activateRadioButton,
+                                i
+                            )
+                        }
                     }
                     Button(
                         onClick = viewModel::clickButtonCheck,

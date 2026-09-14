@@ -21,14 +21,14 @@ internal class SearchScreenViewModel @Inject constructor(val useCase: SearchWord
     private val _valueForAlertDialog: MutableState<WordPair> = mutableStateOf(WordPairImpl("", ""))
     val valueForAlertDialog: State<WordPair> = _valueForAlertDialog
 
-    fun updateValueForTextField(newValue: TextFieldValue) {
+    fun symbolChangedInTextField(newValue: TextFieldValue) {
         _valueForTextField.value = newValue
     }
-    fun cleanValueForAlertDialog(){
+    fun clickButtonOk(){
         _valueForAlertDialog.value = WordPairImpl("", "")
     }
 
-    fun search() {
+    fun clickButtonSearch() {
         viewModelScope.launch {
             val result = useCase.invoke(
                 word = valueForTextField.value.text

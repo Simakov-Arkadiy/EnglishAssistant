@@ -46,7 +46,7 @@ internal class TestScreenViewModel @Inject constructor(val useCase: GetTheTestUs
     fun clickButtonOk() {
         resetAllRadioButton()
         _isDialogVisible.value = false
-        _isResponseCorrect.value = true
+        _isResponseCorrect.value = false
         getTest()
     }
 
@@ -58,24 +58,11 @@ internal class TestScreenViewModel @Inject constructor(val useCase: GetTheTestUs
 
     fun clickButtonCheck() {
         _isDialogVisible.value = true
-        for ((index, value) in _isSelected.withIndex()) {
-            if (value) {
-                if (_test.value.answerOptions[index] == _test.value.correctAnswerOption) {
-                    _isResponseCorrect.value = true
-                    break
-                }
-            } else {
-                if (index == 3) {
-                    _isResponseCorrect.value = false
-                }
-                continue
-            }
-        }
+        _isResponseCorrect.value = _test.value.answerOptions[_isSelected.indexOfFirst { it }] == _test.value.correctAnswerOption
     }
-    private fun resetAllRadioButton(){
-        for (value in _isSelected.indices) {
-            _isSelected[value] = false
-        }
+
+    private fun resetAllRadioButton() {
+        _isSelected.fill(false)
     }
 }
 

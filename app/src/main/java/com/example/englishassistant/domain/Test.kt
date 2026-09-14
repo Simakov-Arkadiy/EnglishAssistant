@@ -9,10 +9,7 @@ data class Test private constructor(
 ) {
     companion object {
         internal fun create(pairs: List<WordPair>): Test {
-            val answerOptions: MutableList<String> = mutableListOf()
-            for (pair in pairs) {
-                answerOptions.add(pair.wordRu)
-            }
+            val answerOptions = pairs.map { it.wordRu }
             val random = Random.nextInt(4)
             val correctAnswerOption: String = pairs[random].wordRu
             val checkWord: String = pairs[random].wordEn

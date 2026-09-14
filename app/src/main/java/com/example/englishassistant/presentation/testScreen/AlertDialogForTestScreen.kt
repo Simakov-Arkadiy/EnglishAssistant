@@ -15,7 +15,7 @@ internal fun AlertDialogForTestScreen(callBack: () -> Unit, isRight: Boolean) {
             onDismissRequest = callBack,
             text = {
                 Text(
-                    text = "Не верно!",
+                    text = "Верно!",
                     modifier = Modifier.fillMaxWidth(),
                     textAlign = TextAlign.Center,
                 )

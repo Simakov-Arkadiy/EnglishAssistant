@@ -18,15 +18,15 @@ internal class RecordScreenViewModel @Inject constructor(val useCase: RecordWord
     private val _valueForEnTextField = mutableStateOf(TextFieldValue(text = ""))
     val valueForEnTextField: State<TextFieldValue> = _valueForEnTextField
 
-    fun updateValueForRuTextField(newValue: TextFieldValue) {
+    fun symbolChangedInRuTextField(newValue: TextFieldValue) {
         _valueForRuTextField.value = newValue
     }
 
-    fun updateValueForEnTextField(newValue: TextFieldValue) {
+    fun symbolChangedInEnTextField(newValue: TextFieldValue) {
         _valueForEnTextField.value = newValue
     }
 
-    fun record() {
+    fun clickButtonRecord() {
         viewModelScope.launch {
             useCase.invoke(
                 WordPairImpl(
