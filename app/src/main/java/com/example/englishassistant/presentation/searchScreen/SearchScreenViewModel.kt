@@ -1,0 +1,61 @@
+package com.example.englishassistant.presentation.searchScreen
+
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.State
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.text.input.TextFieldValue
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
+import com.example.englishassistant.domain.SearchWordPairUseCase
+import com.example.englishassistant.domain.WordPair
+import com.example.englishassistant.domain.WordPairImpl
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import javax.inject.Inject
+
+internal class SearchScreenViewModel @Inject constructor(val useCase: SearchWordPairUseCase) :
+    ViewModel() {
+
+    private var job: Job? = null
+    private val _valueForTextField = mutableStateOf(TextFieldValue(text = ""))
+    val valueForTextField: State<TextFieldValue> = _valueForTextField
+
+    private val _valueForAlertDialog: MutableState<WordPair> = mutableStateOf(WordPairImpl("", ""))
+    val valueForAlertDialog: State<WordPair> = _valueForAlertDialog
+
+    fun onSymbolChanged(newValue: TextFieldValue) {
+        _valueForTextField.value = newValue
+    }
+
+    fun onClickButtonOk() {
+        _valueForAlertDialog.value = WordPairImpl("", "")
+    }
+
+    fun onClickButtonSearch() {
+        if (job?.isActive == true) return
+        viewModelScope.launch {
+            val result = useCase.invoke(
+                word = valueForTextField.value.text
+            )
+            result.fold(
+                onSuccess = { _valueForAlertDialog.value = it },
+                onFailure = { _valueForAlertDialog.value = WordPairImpl("", "") })
+            _valueForTextField.value = TextFieldValue(text = "")
+        }
+    }
+}
+
+internal class SearchScreenViewModelFactory @Inject constructor(
+    private val useCase: SearchWordPairUseCase
+) : ViewModelProvider.Factory {
+
+    override fun <T : ViewModel> create(
+        modelClass: Class<T>
+    ): T {
+
+        return SearchScreenViewModel(
+            useCase = useCase
+        ) as T
+    }
+}
