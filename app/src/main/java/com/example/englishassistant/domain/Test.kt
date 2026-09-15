@@ -8,11 +8,7 @@ data class Test private constructor(
     val checkWord: String,
 ) {
     companion object {
-        internal fun create(pairs: List<WordPair>): Test {
-            val answerOptions = pairs.map { it.wordRu }
-            val random = Random.nextInt(pairs.size)
-            val correctAnswerOption: String = pairs[random].wordRu
-            val checkWord: String = pairs[random].wordEn
+        internal fun create(answerOptions: List<String>, correctAnswerOption: String, checkWord: String): Test {
             return Test(
                 answerOptions = answerOptions.shuffled(),
                 correctAnswerOption = correctAnswerOption,
