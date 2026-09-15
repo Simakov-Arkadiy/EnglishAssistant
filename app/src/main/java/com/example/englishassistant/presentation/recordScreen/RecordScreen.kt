@@ -34,15 +34,15 @@ internal fun RecordScreen(viewModel: RecordScreenViewModel) {
             ) {
                 TextField(
                     value = viewModel.valueForRuTextField.value,
-                    onValueChange = viewModel::symbolChangedInRuTextField,
+                    onValueChange = viewModel::onRuSymbolChanged,
                     label = { Text("Слово на русском") })
 
                 TextField(
                     value = viewModel.valueForEnTextField.value,
-                    onValueChange = viewModel::symbolChangedInEnTextField,
+                    onValueChange = viewModel::onEnSymbolChanged,
                     label = { Text("Слово на английском") })
                 Button(
-                    onClick = viewModel::clickButtonRecord,
+                    onClick = viewModel::onClickButtonRecord,
                     modifier = Modifier
                         .fillMaxWidth(0.8f)
                         .height(50.dp),

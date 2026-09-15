@@ -1,11 +1,11 @@
 package com.example.englishassistant.data
 
-import com.example.englishassistant.domain.Repository
+import com.example.englishassistant.domain.WordPairRepository
 import com.example.englishassistant.domain.WordPair
 import javax.inject.Inject
 
 internal class RepositoryImpl @Inject constructor(val database: EnglishAssistantDataBase) :
-    Repository {
+    WordPairRepository {
     override suspend fun recordWordPair(wordPair: WordPair): Result<Boolean> {
         return runCatching {
             database.baseDao()
@@ -14,16 +14,16 @@ internal class RepositoryImpl @Inject constructor(val database: EnglishAssistant
         }
     }
 
-    override suspend fun getWordPairUnWeighted(word: String): Result<WordPair> {
+    override suspend fun getWordPairUnweighted(word: String): Result<WordPair> {
        return runCatching {
            database.baseDao().getWordPairUnWeighted(word = word)
        }
     }
 
-    override suspend fun getWordPairsWeighted(): Result<List<WordPair>> {
+    override suspend fun getWordPairsWeighted(limit:Int): Result<List<WordPair>> {
         return runCatching {
-            val wordPairs = database.baseDao().getWordPairsWeighted()
-            database.baseDao().updateWeights(listOf(wordPairs[0].id,wordPairs[1].id,wordPairs[2].id,wordPairs[3].id))
+            val wordPairs = database.baseDao().getWordPairsWeighted(limit)
+            database.baseDao().updateWeights(wordPairs.map{it.id})
             wordPairs
         }
     }

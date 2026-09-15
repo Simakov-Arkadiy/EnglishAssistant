@@ -10,34 +10,39 @@ import androidx.lifecycle.viewModelScope
 import com.example.englishassistant.domain.SearchWordPairUseCase
 import com.example.englishassistant.domain.WordPair
 import com.example.englishassistant.domain.WordPairImpl
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 internal class SearchScreenViewModel @Inject constructor(val useCase: SearchWordPairUseCase) :
     ViewModel() {
+
+    private var job: Job? = null
     private val _valueForTextField = mutableStateOf(TextFieldValue(text = ""))
     val valueForTextField: State<TextFieldValue> = _valueForTextField
 
     private val _valueForAlertDialog: MutableState<WordPair> = mutableStateOf(WordPairImpl("", ""))
     val valueForAlertDialog: State<WordPair> = _valueForAlertDialog
 
-    fun symbolChangedInTextField(newValue: TextFieldValue) {
+    fun onSymbolChanged(newValue: TextFieldValue) {
         _valueForTextField.value = newValue
     }
-    fun clickButtonOk(){
+
+    fun onClickButtonOk() {
         _valueForAlertDialog.value = WordPairImpl("", "")
     }
 
-    fun clickButtonSearch() {
+    fun onClickButtonSearch() {
+        if (job?.isActive == true) return
         viewModelScope.launch {
             val result = useCase.invoke(
                 word = valueForTextField.value.text
             )
-            synchronized(this){
-                result.fold(onSuccess = {_valueForAlertDialog.value = it}, onFailure = {_valueForAlertDialog.value = WordPairImpl("", "")})
-            }
+            result.fold(
+                onSuccess = { _valueForAlertDialog.value = it },
+                onFailure = { _valueForAlertDialog.value = WordPairImpl("", "") })
+            _valueForTextField.value = TextFieldValue(text = "")
         }
-        _valueForTextField.value = TextFieldValue(text = "")
     }
 }
 

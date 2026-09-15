@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.englishassistant.domain.RecordWordPairUseCase
 import com.example.englishassistant.domain.WordPairImpl
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -18,25 +19,27 @@ internal class RecordScreenViewModel @Inject constructor(val useCase: RecordWord
     private val _valueForEnTextField = mutableStateOf(TextFieldValue(text = ""))
     val valueForEnTextField: State<TextFieldValue> = _valueForEnTextField
 
-    fun symbolChangedInRuTextField(newValue: TextFieldValue) {
+    private var job: Job? = null
+    fun onRuSymbolChanged(newValue: TextFieldValue) {
         _valueForRuTextField.value = newValue
     }
 
-    fun symbolChangedInEnTextField(newValue: TextFieldValue) {
+    fun onEnSymbolChanged(newValue: TextFieldValue) {
         _valueForEnTextField.value = newValue
     }
 
-    fun clickButtonRecord() {
-        viewModelScope.launch {
+    fun onClickButtonRecord() {
+        if (job?.isActive == true) return
+        job = viewModelScope.launch {
             useCase.invoke(
                 WordPairImpl(
                     wordRu = valueForRuTextField.value.text,
                     wordEn = valueForEnTextField.value.text
                 )
             )
+            _valueForRuTextField.value = TextFieldValue(text = "")
+            _valueForEnTextField.value = TextFieldValue(text = "")
         }
-        _valueForRuTextField.value = TextFieldValue(text = "")
-        _valueForEnTextField.value = TextFieldValue(text = "")
     }
 }
 

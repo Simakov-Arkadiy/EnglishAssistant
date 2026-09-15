@@ -49,13 +49,13 @@ internal fun TestScreen(viewModel: TestScreenViewModel) {
                             TestRadioButton(
                                 viewModel.isSelected[i],
                                 viewModel.test.value.answerOptions[i],
-                                viewModel::activateRadioButton,
+                                viewModel::onActivateRadioButton,
                                 i
                             )
                         }
                     }
                     Button(
-                        onClick = viewModel::clickButtonCheck,
+                        onClick = viewModel::onClickButtonCheck,
                         modifier = Modifier
                             .fillMaxWidth(0.8f)
                             .height(50.dp),
@@ -64,7 +64,7 @@ internal fun TestScreen(viewModel: TestScreenViewModel) {
                     }
                     if (viewModel.isDialogVisible.value) {
                         AlertDialogForTestScreen(
-                            viewModel::clickButtonOk,
+                            viewModel::onClickButtonOk,
                             viewModel.isResponseCorrect.value
                         )
                     }

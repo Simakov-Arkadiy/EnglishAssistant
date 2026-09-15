@@ -6,13 +6,13 @@ import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateListOf
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
-import com.example.englishassistant.domain.GetTheTestUseCase
+import com.example.englishassistant.domain.GetTestUseCase
 import com.example.englishassistant.domain.Test
 import com.example.englishassistant.domain.WordPairImpl
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-internal class TestScreenViewModel @Inject constructor(val useCase: GetTheTestUseCase) :
+internal class TestScreenViewModel @Inject constructor(val useCase: GetTestUseCase) :
     ViewModel() {
     private val _isSelected = mutableStateListOf(false, false, false, false)
     val isSelected: List<Boolean> = _isSelected
@@ -38,12 +38,12 @@ internal class TestScreenViewModel @Inject constructor(val useCase: GetTheTestUs
 
     val isResponseCorrect: State<Boolean> = _isResponseCorrect
 
-    fun activateRadioButton(numberRadioButton: Int) {
+    fun onActivateRadioButton(numberRadioButton: Int) {
         resetAllRadioButton()
         _isSelected[numberRadioButton] = true
     }
 
-    fun clickButtonOk() {
+    fun onClickButtonOk() {
         resetAllRadioButton()
         _isDialogVisible.value = false
         _isResponseCorrect.value = false
@@ -52,11 +52,11 @@ internal class TestScreenViewModel @Inject constructor(val useCase: GetTheTestUs
 
     fun getTest() {
         viewModelScope.launch {
-            _test.value = useCase.invoke().getOrThrow()
+            _test.value = useCase.invoke(4).getOrThrow()
         }
     }
 
-    fun clickButtonCheck() {
+    fun onClickButtonCheck() {
         _isDialogVisible.value = true
         _isResponseCorrect.value = _test.value.answerOptions[_isSelected.indexOfFirst { it }] == _test.value.correctAnswerOption
     }
@@ -67,7 +67,7 @@ internal class TestScreenViewModel @Inject constructor(val useCase: GetTheTestUs
 }
 
 internal class TestScreenViewModelFactory @Inject constructor(
-    private val useCase: GetTheTestUseCase
+    private val useCase: GetTestUseCase
 ) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(

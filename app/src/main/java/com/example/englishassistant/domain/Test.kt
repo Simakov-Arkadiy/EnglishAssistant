@@ -10,7 +10,7 @@ data class Test private constructor(
     companion object {
         internal fun create(pairs: List<WordPair>): Test {
             val answerOptions = pairs.map { it.wordRu }
-            val random = Random.nextInt(4)
+            val random = Random.nextInt(pairs.size)
             val correctAnswerOption: String = pairs[random].wordRu
             val checkWord: String = pairs[random].wordEn
             return Test(

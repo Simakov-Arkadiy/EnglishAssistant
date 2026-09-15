@@ -3,9 +3,9 @@ package com.example.englishassistant.domain
 import javax.inject.Inject
 
 internal class SearchWordPairUseCase @Inject constructor(
-    val repository: Repository
+    val repository: WordPairRepository
 ) {
     suspend operator fun invoke(word:String): Result<WordPair> {
-        return repository.getWordPairUnWeighted(word)
+        return repository.getWordPairUnweighted(word)
     }
 }
