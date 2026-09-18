@@ -32,6 +32,6 @@ internal class ProvidesModule(private val application: Application) {
             klass = EnglishAssistantDataBase::class.java,
             name = "User_database"
 
-        ).fallbackToDestructiveMigration().build()
+        ).fallbackToDestructiveMigration().createFromAsset("prepopulated_data.db").build()
     }
 }

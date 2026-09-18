@@ -1,4 +1,4 @@
-package com.example.englishassistant.presentation
+package com.example.englishassistant.presentation.recordScreen
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -15,10 +15,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import androidx.lifecycle.viewmodel.compose.viewModel
 
 @Composable
-internal fun RecordScreen(viewModel: RecordScreenViewModel = viewModel()) {
+internal fun RecordScreen(viewModel: RecordScreenViewModel) {
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -35,15 +34,15 @@ internal fun RecordScreen(viewModel: RecordScreenViewModel = viewModel()) {
             ) {
                 TextField(
                     value = viewModel.valueForRuTextField.value,
-                    onValueChange = viewModel::updateValueForRuTextField,
+                    onValueChange = viewModel::onRuSymbolChanged,
                     label = { Text("Слово на русском") })
 
                 TextField(
                     value = viewModel.valueForEnTextField.value,
-                    onValueChange = viewModel::updateValueForEnTextField,
+                    onValueChange = viewModel::onEnSymbolChanged,
                     label = { Text("Слово на английском") })
                 Button(
-                    onClick = viewModel::recording,
+                    onClick = viewModel::onClickButtonRecord,
                     modifier = Modifier
                         .fillMaxWidth(0.8f)
                         .height(50.dp),

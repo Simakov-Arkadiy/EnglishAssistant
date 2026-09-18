@@ -1,11 +1,17 @@
 package com.example.englishassistant.presentation.di
 
-import com.example.englishassistant.presentation.RecordScreenViewModel
+import com.example.englishassistant.presentation.recordScreen.RecordScreenViewModelFactory
+import com.example.englishassistant.presentation.searchScreen.SearchScreenViewModelFactory
+import com.example.englishassistant.presentation.testScreen.TestScreenViewModelFactory
 import dagger.Component
 import javax.inject.Singleton
 
 @Singleton
 @Component(modules = [ProvidesModule::class, BindsModule::class])
 internal interface AppComponent {
-    fun recordScreenViewModel(): RecordScreenViewModel
+    fun recordScreenViewModelFactory(): RecordScreenViewModelFactory
+
+    fun searchScreenViewModelFactory(): SearchScreenViewModelFactory
+
+    fun testScreenViewModelFactory(): TestScreenViewModelFactory
 }
