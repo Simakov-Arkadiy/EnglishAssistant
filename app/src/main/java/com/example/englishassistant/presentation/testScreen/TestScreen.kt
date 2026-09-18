@@ -12,16 +12,12 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 
 @Composable
 internal fun TestScreen(viewModel: TestScreenViewModel) {
-    LaunchedEffect(Unit) {
-        viewModel.getTest()
-    }
     Surface(
         modifier = Modifier
             .fillMaxSize()
@@ -45,7 +41,7 @@ internal fun TestScreen(viewModel: TestScreenViewModel) {
                         verticalArrangement = Arrangement.SpaceEvenly,
                         horizontalAlignment = Alignment.Start
                     ) {
-                        for (i in 0..3) {
+                        for (i in 0 until  viewModel.test.value.answerOptions.size) {
                             TestRadioButton(
                                 viewModel.isSelected[i],
                                 viewModel.test.value.answerOptions[i],

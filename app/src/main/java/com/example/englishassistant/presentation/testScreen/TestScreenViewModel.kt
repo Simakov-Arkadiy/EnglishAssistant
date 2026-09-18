@@ -8,25 +8,22 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
 import com.example.englishassistant.domain.GetTestUseCase
 import com.example.englishassistant.domain.Test
-import com.example.englishassistant.domain.WordPairImpl
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 internal class TestScreenViewModel @Inject constructor(val useCase: GetTestUseCase) :
     ViewModel() {
-    private val _isSelected = mutableStateListOf(false, false, false, false)
-    val isSelected: List<Boolean> = _isSelected
-
     private val _test = mutableStateOf(
         Test.create(
-            listOf(
-                WordPairImpl("", ""),
-                WordPairImpl("", ""),
-                WordPairImpl("", ""),
-                WordPairImpl("", "")
-            )
+            listOf("", ""),
+            "",
+            ""
         )
     )
+    private val _isSelected = mutableStateListOf<Boolean>().apply {
+        addAll(List(_test.value.answerOptions.size) { false })
+    }
+    val isSelected: List<Boolean> = _isSelected
 
     val test: State<Test> = _test
 
@@ -37,6 +34,10 @@ internal class TestScreenViewModel @Inject constructor(val useCase: GetTestUseCa
     private val _isResponseCorrect = mutableStateOf(false)
 
     val isResponseCorrect: State<Boolean> = _isResponseCorrect
+
+    init {
+        getTest()
+    }
 
     fun onActivateRadioButton(numberRadioButton: Int) {
         resetAllRadioButton()
@@ -50,15 +51,18 @@ internal class TestScreenViewModel @Inject constructor(val useCase: GetTestUseCa
         getTest()
     }
 
-    fun getTest() {
+    private fun getTest() {
         viewModelScope.launch {
             _test.value = useCase.invoke(4).getOrThrow()
+            _isSelected.clear()
+            _isSelected.addAll(List(_test.value.answerOptions.size) { false })
         }
     }
 
     fun onClickButtonCheck() {
         _isDialogVisible.value = true
-        _isResponseCorrect.value = _test.value.answerOptions[_isSelected.indexOfFirst { it }] == _test.value.correctAnswerOption
+        _isResponseCorrect.value =
+            _test.value.answerOptions[_isSelected.indexOfFirst { it }] == _test.value.correctAnswerOption
     }
 
     private fun resetAllRadioButton() {
