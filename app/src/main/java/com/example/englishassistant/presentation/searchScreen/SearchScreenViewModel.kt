@@ -36,7 +36,7 @@ internal class SearchScreenViewModel @Inject constructor(val useCase: SearchWord
         if (job?.isActive == true) return
         viewModelScope.launch {
             val result = useCase.invoke(
-                word = valueForTextField.value.text
+                subStr = valueForTextField.value.text
             )
             result.fold(
                 onSuccess = { _valueForAlertDialog.value = it },
