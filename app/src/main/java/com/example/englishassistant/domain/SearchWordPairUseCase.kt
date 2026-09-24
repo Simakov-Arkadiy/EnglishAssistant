@@ -5,7 +5,7 @@ import javax.inject.Inject
 internal class SearchWordPairUseCase @Inject constructor(
     private val repository: WordPairRepository
 ) {
-    suspend operator fun invoke(word:String): Result<WordPair> {
-        return repository.getWordPairUnweighted(word)
+    suspend operator fun invoke(subStr:String): Result<List<WordPair>> {
+        return repository.getWordPairUnweighted(subStr)
     }
 }
