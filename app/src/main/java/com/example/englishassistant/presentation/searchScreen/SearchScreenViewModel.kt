@@ -30,6 +30,7 @@ internal class SearchScreenViewModel @Inject constructor(val useCase: SearchWord
     val valueForAlertDialog: State<WordPair> = _valueForAlertDialog
 
     fun onSymbolChanged(newValue: TextFieldValue) {
+        _valueForDropDawn.value = emptyList()
         _valueForTextField.value = newValue
         if (job?.isActive == true) return
         job = viewModelScope.launch {
@@ -53,6 +54,8 @@ internal class SearchScreenViewModel @Inject constructor(val useCase: SearchWord
 
     fun onClickButtonOk() {
         _valueForAlertDialog.value = WordPairImpl("", "")
+        _valueForDropDawn.value = emptyList()
+        _valueForTextField.value = TextFieldValue(text = "")
     }
 }
 

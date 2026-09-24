@@ -2,6 +2,7 @@ package com.example.englishassistant.presentation.searchScreen
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.OutlinedTextField
@@ -13,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.PopupProperties
 
 @Composable
@@ -33,6 +35,7 @@ internal fun SearchTextFieldWithDropdownList(
             label = { Text("Искомое слово") },
             modifier = Modifier
                 .fillMaxWidth()
+                .padding(16.dp)
                 .onFocusChanged { focusState ->
                     if (!focusState.isFocused) {
                         isDropdownVisible = false
