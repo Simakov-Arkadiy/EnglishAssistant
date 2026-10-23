@@ -7,7 +7,7 @@ import androidx.compose.runtime.Composable
 import com.example.englishassistant.domain.WordPair
 
 @Composable
-internal fun AlertDialogForSearchScreen(callBack:() -> Unit, wordPair: WordPair) {
+internal fun AlertDialogForSearchScreen(callBack: () -> Unit, wordPair: WordPair) {
     AlertDialog(
         onDismissRequest = callBack,
         text = {
